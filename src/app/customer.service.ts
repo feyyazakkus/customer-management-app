@@ -11,4 +11,12 @@ export class CustomerService {
     getCustomers() {
         return this.http.get(apiUrl + '/customers');
     }
+
+    getCustomerById(id) {
+        return this.http.get(apiUrl + '/customers/' + id);
+    }
+
+    updateCustomer(customer) {
+        return this.http.put(apiUrl + '/customers/' + customer.customerID, customer);
+    }
 }

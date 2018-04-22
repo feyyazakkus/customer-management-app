@@ -148,4 +148,46 @@ table.table td a.action-btn.edit {
     float: left;
     margin-top: 10px;
     font-size: 13px;
-}    
+}
+.btn {
+    font-size: 13px;
+}
+.form-control {
+    font-size: 13px;
+}
+.form-inline .form-check {
+    margin-right: 12px;
+}
+.form-inline label {
+    margin-left: 3px;
+}
+.back-link {
+    float: right;
+    margin: 5px;
+}
+.back-link a {
+    color: #fff;
+}
+/* Customer detail page */
+.customer-detail-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    margin: 30px auto;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.customer-detail-title {
+    color: #fff;
+    background: #4b5366;		
+    padding: 16px 25px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+}
+.customer-detail-title h2 {
+    margin: 5px 0 0;
+    font-size: 24px;
+}
+.customer-detail-form {
+    margin-top: 30px;
+}

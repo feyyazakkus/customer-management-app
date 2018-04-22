@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="customer-detail-wrapper">
+        <div class="customer-detail-title">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2>Edit Customer</h2>
+                </div>
+                <div class="col-md-8">
+                    <p class="back-link"><a routerLink="/home">Back to Customers List</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="customer-detail-form">
+
+            <div class="alert alert-success" role="alert" *ngIf="alert == 'success'">
+                Customer updated successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="alert == 'error'">
+                Cannot update the customer. Please try again.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">First Name</label>
+                    <div class="col-md-4 col-sm-10">
+                        <input class="form-control" [(ngModel)]="customer?.name.first" name="firstname" type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Last Name</label>
+                    <div class="col-md-4 col-sm-10">
+                            <input class="form-control" [(ngModel)]="customer?.name.last" name="lastname" type="text">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2">Gender</div>
+                    <div class="col-md-4 col-sm-10">
+                        <div class="form-inline">
+                        <div class="form-check gender-select">    
+                            <input id="male" type="radio" name="gender" [checked]="customer?.gender == 'm'" (click)="customer.gender = 'm'"> <label for="male">Male</label>
+                        </div>
+                        <div class="form-check gender-select">
+                            <input id="female" type="radio" name="gender" [checked]="customer?.gender == 'w'" (click)="customer.gender = 'w'"> <label for="female">Female</label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Birthday</label>
+                    <div class="col-md-4 col-sm-10">
+                        <my-date-picker name="birthday" [options]="myDatePickerOptions" [(ngModel)]="birthday" (dateChanged)="onBirthDayChange($event)" required></my-date-picker>
+                    </div>
+                </div>
+                <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Last Contact</label>
+                        <div class="col-md-4 col-sm-10">
+                            <my-date-picker name="lastContact" [options]="myDatePickerOptions" [(ngModel)]="lastContact" (dateChanged)="onLastContactChange($event)" required></my-date-picker>
+                        </div>
+                    </div>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-spinner fa-spin spin-small" *ngIf="isLoading"></i> Update Customer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="clearfix"></div>
+  </div>
+</div>
