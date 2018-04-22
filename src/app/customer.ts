@@ -9,5 +9,10 @@ export class Customer {
     lastContact: Date;
     customerLifetimeValue: number;
 
-    constructor () {}
+    constructor () {
+        this.name = {
+            first: '',
+            last: ''
+        };
+    }
 }

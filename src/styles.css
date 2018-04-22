@@ -151,6 +151,7 @@ table.table td a.action-btn.edit {
 }
 .btn {
     font-size: 13px;
+    cursor: pointer;
 }
 .form-control {
     font-size: 13px;

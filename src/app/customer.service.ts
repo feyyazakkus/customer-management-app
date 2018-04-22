@@ -19,4 +19,12 @@ export class CustomerService {
     updateCustomer(customer) {
         return this.http.put(apiUrl + '/customers/' + customer.customerID, customer);
     }
+
+    addCustomer(customer) {
+        return this.http.post(apiUrl + '/customers', customer);
+    }
+
+    deleteCustomer(id) {
+        return this.http.delete(apiUrl + '/customers/' + id);
+    }
 }

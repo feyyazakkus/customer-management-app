@@ -6,7 +6,9 @@
                     <h2>Customer Management</h2>
                 </div>
                 <div class="col-sm-8">
-                    <a class="btn btn-primary" href="#"><i class="fa fa-user-plus"></i> <span>Add Customer</span></a>
+                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#addCustomer">
+                        <i class="fa fa-user-plus"></i> <span>Add Customer</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -15,7 +17,7 @@
                 <div class="col-sm-12">
                     <div class="filter-group">
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
-                        <label>Filter Customers</label> <input class="form-control" type="text">
+                        <label>Filter Customers</label> <input class="form-control" [(ngModel)]="searchText" name="searchText" type="text">
                     </div>
                 </div>
             </div>
@@ -33,16 +35,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let customer of customers">
+                <tr *ngFor="let customer of customers | filter: searchText">
                     <td>{{customer.customerID}}</td>
-                    <td><a routerLink="/customer/{{customer.customerID}}">{{customer.name.first}} {{customer.name.first}}</a></td>
+                    <td><a routerLink="/customer/{{customer.customerID}}">{{customer.name.first}} {{customer.name.last}}</a></td>
                     <td>{{customer.birthday | date: 'mediumDate'}}</td>
                     <td>{{customer.gender == 'm' ? 'Male' : 'Female'}}</td>
                     <td>{{customer.lastContact | date: 'medium'}}</td>
                     <td>{{customer.customerLifetimeValue}}</td>
                     <td>
                         <a class="action-btn edit" routerLink="/customer/{{customer.customerID}}" title="Edit Customer"><i class="fa fa-edit text-warning"></i></a>
-                        <a class="action-btn" href="#" title="Delete Customer"><i class="fa fa-trash text-danger"></i></a>
+                        <a class="action-btn" href="javascript:void(0)" title="Delete Customer" (click)="deleteCustomer(customer.customerID)"><i class="fa fa-trash text-danger"></i></a>
                     </td>
                 </tr>
             </tbody>
@@ -50,6 +52,65 @@
         <div class="clearfix">
             <div class="hint-text">
                 Showing <b>{{customers?.length}}</b> customers
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Customer Model -->
+<div id="addCustomer" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Customer</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">First Name*</label>
+                        <div class="col-md-8">
+                            <input class="form-control" [(ngModel)]="customer.name.first" name="firstname" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">Last Name*</label>
+                        <div class="col-md-8">
+                            <input class="form-control" [(ngModel)]="customer.name.last" name="lastname" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4">Gender*</div>
+                        <div class="col-md-8">
+                            <div class="form-inline">
+                            <div class="form-check gender-select">    
+                                <input id="male" type="radio" name="gender" (click)="customer.gender = 'm'" checked> <label for="male">Male</label>
+                            </div>
+                            <div class="form-check gender-select">
+                                <input id="female" type="radio" name="gender" (click)="customer.gender = 'w'"> <label for="female">Female</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">Birthday*</label>
+                        <div class="col-md-8">
+                            <my-date-picker name="birthday" [options]="myDatePickerOptions" [(ngModel)]="birthday" (dateChanged)="onBirthDayChange($event)" required></my-date-picker>
+                        </div>
+                    </div>
+                    <p>* Required fields</p>
+                    <div class="alert alert-danger" role="alert" *ngIf="alert === 'required'">
+                        Please fill the required fields.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="addCustomer()"><i class="fa fa-spinner fa-spin spin-small" *ngIf="isLoading"></i> Add Customer</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
