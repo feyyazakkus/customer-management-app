@@ -4,10 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
+  },
+  "engines": {
+    "node": "6.11.0",
+    "npm": "3.10.10"
   },
   "private": true,
   "dependencies": {
@@ -22,9 +27,12 @@
     "@angular/router": "^4.2.4",
     "bootstrap": "4.0.0-beta.2",
     "core-js": "^2.4.1",
+    "express": "4.16.3",
     "jquery": "3.3.1",
     "mydatepicker": "2.6.3",
+    "path": "0.12.7",
     "rxjs": "^5.4.2",
+    "typescript": "~2.3.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
