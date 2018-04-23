@@ -1,4 +1,4 @@
-# Customer Management API
+# Customer Management APP
 ![Build Status](https://travis-ci.org/feyyazakkus/customer-management-app.svg?branch=master)
 Customer Management Application developed using Angular
 
