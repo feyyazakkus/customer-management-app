@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const apiUrl = 'http://localhost:3000/api';
+const apiUrl = 'https://customer-management-api.herokuapp.com/api';
 
 @Injectable()
 export class CustomerService {
@@ -12,8 +13,10 @@ export class CustomerService {
         return this.http.get(apiUrl + '/customers');
     }
 
-    getCustomerById(id) {
-        return this.http.get(apiUrl + '/customers/' + id);
+    getCustomerById(id: number): Observable<any> {
+        return this.http.get(apiUrl + '/customers/' + id).catch(error => {
+            return Observable.throw(error);
+         });
     }
 
     updateCustomer(customer) {
