@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
     customers: Customer[];
     birthday: any;
     alert: string;
+    searchText: string;
+    isLoading: boolean;
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd.mm.yyyy',
     };
