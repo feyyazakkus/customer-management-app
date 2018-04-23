@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- 'node'
+before_install:
+- npm install -g @angular/cli
+install: npm install
+branches:
+  only:
+  - master
+after_script:
+- chmod +x publish-gh-pages.sh && ./publish-gh-pages.sh
+deploy:
+  provider: heroku
+  api_key:
+    secure: "Ccep8jeeT3PNlUImB2OELC4kfJuBGDN7pUdNeVxAyU9bDp8CqqbSRH0KhG5A+zj2nrn8w2EaYQmF4bvm5e5j+Wog1hNpxSXrQrABnxZ1KtRJEWORJAoX7QtFkCKavlu5gbQ5HfpiHmSPxZWrf6yWZLNBgtphILuBDX2hXbsAm/DX3j815Zsm5/uOQiJp0TVwt5CiG9OvIAyh2OwrHDa+R/rLkZxjkJCR5mC6S/s7WEdCelwCkVJt7xT5gS4OkVkfdyrUIKecEqUkRNRE1cHvFXfxAXHyi2JEvSOlW57V1KDCMnRlRR/8S52tr0Nbq6uKDhdvs88gmglNYaawhj3QDDlA2+EgBhTxqvyow524cTjZ9HQsGSfqO1e57w6ZhEyFmWMfjtPUe0vQeGhEmmJtoZKnQMFwzutYrlnWLl6kc/dh7yUm+l758ASuboOveZRuatMRRY5puTdAWPomiaHwfKVfz4slqhbPs29/QqAautDpzX+Ggs9qXAeIH0wkKKWHdvi2Nd3qkr4faP3beN7NfkKZJwWTmW4eLla9JgKBIBn5FME97ErM3o/pb+IoQD0pxz0/fn778M5YKjkNq37Jc6DVzHb6Vplclc6RP8N4fPypxHFbw0q8nd+P5eHLYuMYkGLgprmesrHaB838Iv3DrD2IuUGmKIlDC4EXL/nD44U="
+  app: customer-management-app
