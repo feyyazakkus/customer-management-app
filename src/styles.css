@@ -87,6 +87,9 @@ body {
     width: 200px;
     display: inline-block;
 }
+.table-holder {
+    overflow-x: auto;
+}
 
 .filter-icon {
     float: left;
@@ -191,4 +194,13 @@ table.table td a.action-btn.edit {
 }
 .customer-detail-form {
     margin-top: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .filter-icon {
+        margin-top: 0;
+    }
+    .form-inline .form-check {
+        width: auto;
+    }
 }

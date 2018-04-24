@@ -36,7 +36,8 @@ export class HomeComponent implements OnInit {
     }
     
     addCustomer() {
-        if (this.validateCustomerForm(this.customer)) {
+        console.log(this.customer);
+        /*if (this.validateCustomerForm(this.customer)) {
             this.customerService.addCustomer(this.customer).subscribe((res:any) => {
                 if (res.success) {
                     $('#addCustomer').modal('hide');
@@ -44,7 +45,7 @@ export class HomeComponent implements OnInit {
                     this.getCustomers();
                 }
             });
-        }
+        }*/
     }
 
     deleteCustomer(customerID) {

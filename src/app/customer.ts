@@ -14,5 +14,6 @@ export class Customer {
             first: '',
             last: ''
         };
+        this.gender = 'm';
     }
 }
