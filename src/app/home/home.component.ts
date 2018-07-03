@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../customer.service';
-import { Customer } from '../customer';
+import { CustomerService } from '../customer/customer.service';
+import { ICustomer, Customer } from '../customer/customer.model';
 import { DatePipe } from '@angular/common';
 import { IMyDpOptions } from 'mydatepicker';
 
@@ -12,8 +12,8 @@ declare var $:any;
 })
 export class HomeComponent implements OnInit {
 
-    customer: Customer;
-    customers: Customer[];
+    customer: ICustomer;
+    customers: ICustomer[];
     birthday: any;
     alert: string;
     searchText: string;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CustomerService } from '../customer.service';
-import { Customer } from '../customer';
+import { CustomerService } from './customer.service';
+import { ICustomer } from './customer.model';
 import { DatePipe } from '@angular/common';
 import { IMyDpOptions } from 'mydatepicker';
 import { IMyDateFormat } from 'mydatepicker/dist/interfaces';
@@ -13,7 +13,7 @@ import { IMyDateFormat } from 'mydatepicker/dist/interfaces';
 export class CustomerComponent implements OnInit {
 
     id: number;
-    customer: Customer;
+    customer: ICustomer;
     birthday: any;
     lastContact: any;
     isLoading: boolean;
@@ -34,27 +34,9 @@ export class CustomerComponent implements OnInit {
             // get customer
             this.customerService.getCustomerById(this.id).subscribe((res:any) => {
                 if (res.success) {
-                    this.customer = res.customer;
-                    
-                    // set birthday for datepicker
-                    var birthday = new Date(res.customer.birthday);
-                    this.birthday = {
-                        date: {
-                            year: birthday.getFullYear(),
-                            month: birthday.getMonth() + 1,
-                            day: birthday.getDate(),
-                        }
-                    }
-
-                    // set last contact date for datepicker
-                    var lastContact = new Date(res.customer.lastContact);
-                    this.lastContact = {
-                        date: {
-                            year: lastContact.getFullYear(),
-                            month: lastContact.getMonth() + 1,
-                            day: lastContact.getDate(),
-                        }
-                    }
+                    this.customer = res.customer as ICustomer;
+                    this.birthday = this.customerService.setBirthdayDate(this.customer.birthday);
+                    this.lastContact = this.customerService.setLastContactDate(this.customer.lastContact);
                 }
             });
         });

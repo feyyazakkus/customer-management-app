@@ -2,12 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { MyDatePickerModule } from 'mydatepicker';
-import { DatePipe } from '@angular/common';
-import { FilterPipe } from './filter.pipe';
 
-import { CustomerService } from './customer.service';
+import { SharedModule } from './shared.module';
+
+import { CustomerService } from './customer/customer.service';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { HomeComponent } from './home/home.component';
@@ -22,17 +20,20 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CustomerComponent,
-    HomeComponent,
-    FilterPipe
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
     RouterModule.forRoot(appRoutes),
-    MyDatePickerModule
+
+    SharedModule
   ],
-  providers: [CustomerService, DatePipe],
-  bootstrap: [AppComponent]
+  providers: [
+    CustomerService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

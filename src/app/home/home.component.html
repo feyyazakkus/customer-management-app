@@ -35,7 +35,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="customers">
                     <tr *ngFor="let customer of customers | filter: searchText">
                         <td>{{customer.customerID}}</td>
                         <td><a routerLink="/customer/{{customer.customerID}}">{{customer.name.first}} {{customer.name.last}}</a></td>

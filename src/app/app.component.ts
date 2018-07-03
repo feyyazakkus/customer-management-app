@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomerService } from './customer.service';
-import { Customer } from './customer';
 
 declare var $:any;
 
