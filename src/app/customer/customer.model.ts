@@ -4,9 +4,9 @@ export interface ICustomer {
         first: string,
         last: string,
     };
-    birthday: string;
+    birthday: string | Date;
     gender: string;
-    lastContact: Date;
+    lastContact: string | Date;
     customerLifetimeValue: number;
 }
 
@@ -16,16 +16,22 @@ export class Customer {
         first: string,
         last: string,
     };
-    birthday: string;
+    birthday: string | Date;
     gender: string;
-    lastContact: Date;
+    lastContact: string | Date;
     customerLifetimeValue: number;
 
-    constructor () {
+    constructor (customer) {
+        this.customerID = customer.customerID || null;
+
         this.name = {
-            first: '',
-            last: ''
+            first: customer.name ? customer.name.first : '',
+            last: customer.name ? customer.name.last : ''
         };
-        this.gender = 'm';
+
+        this.birthday = customer.birthday || '';
+        this.gender = customer.gender || 'm';
+        this.lastContact = customer.lastContact || '';
+        this.customerLifetimeValue = customer.customerLifetimeValue || '';
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CustomerService } from '../customer/customer.service';
 import { ICustomer, Customer } from '../customer/customer.model';
 import { DatePipe } from '@angular/common';
@@ -8,7 +8,9 @@ declare var $:any;
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
 
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
             this.customerService.addCustomer(this.customer).subscribe((res:any) => {
                 if (res.success) {
                     $('#addCustomer').modal('hide');
-                    this.customer = new Customer();
+                    this.customer = new Customer({});
                     this.getCustomers();
                 }
             });
@@ -71,7 +73,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.customer = new Customer();
+        this.customer = new Customer({});
         this.getCustomers();
     }
 }

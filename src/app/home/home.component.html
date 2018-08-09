@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="table-wrapper">
-        <div class="table-title">
+    <div class="main">
+        <div class="page-header">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <h2>Customer Management</h2>
                 </div>
                 <div class="col-md-8 col-sm-12">
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#addCustomer">
+                    <a class="btn btn-primary add-customer-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addCustomer">
                         <i class="fa fa-user-plus"></i> <span>Add Customer</span>
                     </a>
                 </div>
@@ -31,7 +31,6 @@
                         <th>Birthday</th>
                         <th>Gender</th>
                         <th>Last Contact</th>
-                        <th>Customer Lifetime Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,7 +41,6 @@
                         <td>{{customer.birthday | date: 'mediumDate'}}</td>
                         <td>{{customer.gender == 'm' ? 'Male' : 'Female'}}</td>
                         <td>{{customer.lastContact | date: 'medium'}}</td>
-                        <td>{{customer.customerLifetimeValue}}</td>
                         <td>
                             <a class="action-btn edit" routerLink="/customer/{{customer.customerID}}" title="Edit Customer"><i class="fa fa-edit text-warning"></i></a>
                             <a class="action-btn" href="javascript:void(0)" title="Delete Customer" (click)="deleteCustomer(customer.customerID)"><i class="fa fa-trash text-danger"></i></a>

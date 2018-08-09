@@ -1,0 +1,48 @@
+
+@import 'mixin.scss';
+@import 'variables.scss';
+
+body {
+    color: $main-text-color;
+    background: $app-background;
+    font-family: $default-font-family;
+    font-size: $default-font-size;
+}
+
+.main {
+    background: #fff;
+    padding: 20px 25px;
+    margin: 30px auto;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.btn {
+    font-size: $default-font-size;
+    cursor: pointer;
+}
+
+.page-header {
+    color: #fff;
+    background: $main-header-bg;		
+    padding: 16px 25px;
+    margin: -20px -25px 10px;
+    border-radius: 3px 3px 0 0;
+
+    h2 {
+        margin: 5px 0 0;
+        font-size: 24px;
+    }
+}
+
+.form-control {
+    font-size: $default-font-size;
+}
+
+.form-inline .form-check {
+    margin-right: 12px;
+
+    @include respond-to(small-screen) {
+        width: auto;
+    }
+}

@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from './customer.service';
-import { ICustomer } from './customer.model';
+import { ICustomer, Customer } from './customer.model';
 import { DatePipe } from '@angular/common';
 import { IMyDpOptions } from 'mydatepicker';
 import { IMyDateFormat } from 'mydatepicker/dist/interfaces';
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html'
+    selector: 'app-customer',
+    templateUrl: './customer.component.html',
+    styleUrls: ['./customer.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CustomerComponent implements OnInit {
 
@@ -34,7 +36,7 @@ export class CustomerComponent implements OnInit {
             // get customer
             this.customerService.getCustomerById(this.id).subscribe((res:any) => {
                 if (res.success) {
-                    this.customer = res.customer as ICustomer;
+                    this.customer = new Customer(res.customer);
                     this.birthday = this.customerService.setBirthdayDate(this.customer.birthday);
                     this.lastContact = this.customerService.setLastContactDate(this.customer.lastContact);
                 }
