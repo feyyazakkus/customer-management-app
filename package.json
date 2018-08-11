@@ -30,6 +30,7 @@
     "express": "4.16.3",
     "jquery": "3.3.1",
     "mydatepicker": "2.6.3",
+    "ngx-pagination": "3.2.0",
     "path": "0.12.7",
     "rxjs": "^5.4.2",
     "typescript": "~2.3.3",

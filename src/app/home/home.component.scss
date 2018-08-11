@@ -30,7 +30,7 @@
     input {
         display: inline-block;
         width: 200px;
-        height: 34px;
+        height: 30px;
         margin-left: 5px;
         border-radius: 3px;
         border-color: #ddd;
@@ -44,6 +44,7 @@
 }
 
 .table-holder {
+    min-height: 300px;
     overflow-x: auto;
 }
 
@@ -129,4 +130,33 @@
 
 .form-inline label {
     margin-left: 3px;
+}
+
+.pagination-controls {
+    float: right;
+    margin-right: 15px;
+    padding-top: 4px;
+}
+
+.sorting-select {
+    padding: 7px 14px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    margin-left: 7px;
+}
+
+.page-size-select {
+    padding: 7px 10px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    margin-left: 7px;
+}
+
+.sort-direction {
+    cursor: pointer;
+}
+
+.sort-group {
+    float: left;
+    margin-right: 30px;
 }

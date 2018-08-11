@@ -15,8 +15,16 @@ export class CustomerService {
 
     private apiUrl = appConfig.apiUrl;
 
-    getCustomers(): Observable<any> {
-        return this.http.get(this.apiUrl + '/customers');
+    getCustomers(pageIndex, pageSize, sortBy, sortDirection): Observable<any> {
+
+        let options = {
+            limit: pageSize,
+            offset: (pageIndex - 1) * pageSize,
+            sortBy: sortBy,
+            sortDirection: sortDirection
+        }
+
+        return this.http.post(this.apiUrl + '/customers', options);
     }
 
     getCustomerById(id: number): Observable<any> {
@@ -28,7 +36,7 @@ export class CustomerService {
     }
 
     addCustomer(customer) {
-        return this.http.post(this.apiUrl + '/customers', customer);
+        return this.http.post(this.apiUrl + '/customers/add', customer);
     }
 
     deleteCustomer(id) {
@@ -57,5 +65,19 @@ export class CustomerService {
                 day: lastContactDate.getDate(),
             }
         }
+    }
+
+    getSortingRules() {
+        return [
+            { label: 'Customer No', value: 'customerID'},
+            { label: 'Name', value: 'name.first'},
+            { label: 'Birthday', value: 'birthday'},
+            { label: 'Gender', value: 'gender'},
+            { label: 'Last Contact', value: 'lastContact'}
+        ]   
+    }
+
+    getPageSizes() {
+        return [5, 10, 20, 30, 50]
     }
 }

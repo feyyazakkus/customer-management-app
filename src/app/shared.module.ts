@@ -4,10 +4,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 
 import { MyDatePickerModule } from 'mydatepicker';
 import { FilterPipe } from './pipes/filter.pipe';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
     declarations: [
-        FilterPipe
+        FilterPipe,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -18,7 +20,8 @@ import { FilterPipe } from './pipes/filter.pipe';
         FormsModule,
         CommonModule,
         MyDatePickerModule,
-        FilterPipe
+        FilterPipe,
+        LoaderComponent
     ],
     providers: [
         DatePipe

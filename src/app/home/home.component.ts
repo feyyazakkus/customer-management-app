@@ -3,6 +3,7 @@ import { CustomerService } from '../customer/customer.service';
 import { ICustomer, Customer } from '../customer/customer.model';
 import { DatePipe } from '@angular/common';
 import { IMyDpOptions } from 'mydatepicker';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 declare var $:any;
 
@@ -23,17 +24,51 @@ export class HomeComponent implements OnInit {
     myDatePickerOptions: IMyDpOptions = {
         dateFormat: 'dd.mm.yyyy',
     };
+    pageIndex: number = 1;
+    pageSize: number = 5;
+    pageSizes: Array<number>;
+    totalSize: number;
+    sortingRules: Object[];
+    sortBy: string = 'customerID';
+    sortDirection: number = 1;
+    totalCount: number;
+    loading: boolean = false;
+    onOptionsChanged: BehaviorSubject<Object> = new BehaviorSubject(null);
     
     constructor (
         private customerService: CustomerService,
         private datePipe: DatePipe
     ) { }
 
+    ngOnInit() {
+        this.sortingRules = this.customerService.getSortingRules();
+        this.pageSizes = this.customerService.getPageSizes();
+        this.customer = new Customer({});
+
+        this.onOptionsChanged.subscribe((options) => {
+            if (options instanceof Object) {
+                this.getCustomers();
+            }
+        });
+
+        this.getCustomers();
+    }
+
     getCustomers() {
-        this.customerService.getCustomers().subscribe((response:any) => {
+        this.loading = true;
+        
+        this.customerService.getCustomers(
+            this.pageIndex,
+            this.pageSize,
+            this.sortBy,
+            this.sortDirection)
+        .subscribe((response:any) => {
             if (response.success) {
                 this.customers = response.customers;
+                this.totalCount = response.totalCount;
             }
+
+            this.loading = false;
         });
     }
     
@@ -72,8 +107,13 @@ export class HomeComponent implements OnInit {
         return true;
     }
 
-    ngOnInit() {
-        this.customer = new Customer({});
-        this.getCustomers();
+    onPageChange(pageIndex) {
+        this.pageIndex = pageIndex;
+        this.onOptionsChanged.next({});
+    }
+
+    changeSortDirection() {
+        this.sortDirection = this.sortDirection == 1 ? -1 : 1;
+        this.onOptionsChanged.next({});
     }
 }

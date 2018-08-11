@@ -46,3 +46,43 @@ body {
         width: auto;
     }
 }
+
+/* ngx-pagination */
+.ngx-pagination li {
+    position: relative;
+    margin-right: 0;
+}
+
+.ngx-pagination {
+    margin: 0 !important;
+
+    .current {
+        border-radius: 3px;
+    }
+
+    a, button {
+        color: $main-text-color !important;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+
+    .pagination-next a::after,
+    .pagination-next.disabled::after {
+        position: absolute;
+        right: -6px;
+        top: 1px;
+    }
+
+    .pagination-previous a::before,
+    .pagination-previous.disabled::before {
+        position: absolute;
+        left: -4px;
+        top: 1px;
+    }
+}
+
+/* datepicker */
+.mydp {
+    padding-bottom: 2px;
+}
