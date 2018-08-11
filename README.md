@@ -12,9 +12,9 @@ Customer Management Application developed using Angular
 
 
 ### Back-end
-The back-end part of this application is developed using Nodejs and Expressjs.
+The back-end part of this application is developed using Nodejs and Express.js.
 
-Checkout: ttps://github.com/feyyazakkus/customer-management-api  
+Checkout: https://github.com/feyyazakkus/customer-management-api  
 
 #### Application URL
 Application hosted on Heroku
