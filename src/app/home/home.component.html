@@ -3,7 +3,7 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
-                    <h2>Customer Management</h2>
+                    <h2 class="title">Customer Management</h2>
                 </div>
                 <div class="col-md-8 col-sm-12">
                     <a class="btn btn-primary add-customer-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addCustomer">
@@ -80,7 +80,8 @@
         </div>
         <div class="clearfix">
             <div class="hint-text">
-                Showing <b>{{customers?.length}}</b> of <b>{{totalCount}}</b> customers
+                Showing <span class="current-count">{{customers?.length}}</span> 
+                of <span class="total-count">{{totalCount}}</span> customers
             </div>
             <div class="pagination-controls">
                 <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>

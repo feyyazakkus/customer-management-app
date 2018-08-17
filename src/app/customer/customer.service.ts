@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ICustomer } from './customer.model';
-
+import { ICustomer, Customer } from './customer.model';
 import { appConfig } from '../app.config';
+
+enum SortDirection {
+    ASC = 1,
+    DESC = -1
+}
 
 @Injectable()
 export class CustomerService {
@@ -13,10 +17,14 @@ export class CustomerService {
         private http: HttpClient
     ) { }
 
-    private apiUrl = appConfig.apiUrl;
+    apiUrl: string = appConfig.apiUrl;
 
-    getCustomers(pageIndex, pageSize, sortBy, sortDirection): Observable<any> {
-
+    getCustomers(
+        pageIndex: number,
+        pageSize: number,
+        sortBy: string,
+        sortDirection: SortDirection
+    ): Observable<any> {
         let options = {
             limit: pageSize,
             offset: (pageIndex - 1) * pageSize,
@@ -31,15 +39,15 @@ export class CustomerService {
         return this.http.get(this.apiUrl + '/customers/' + id);
     }
 
-    updateCustomer(customer) {
+    updateCustomer(customer: Customer) {
         return this.http.put(this.apiUrl + '/customers/' + customer.customerID, customer);
     }
 
-    addCustomer(customer) {
+    addCustomer(customer: Customer) {
         return this.http.post(this.apiUrl + '/customers/add', customer);
     }
 
-    deleteCustomer(id) {
+    deleteCustomer(id: number) {
         return this.http.delete(this.apiUrl + '/customers/' + id);
     }
 
@@ -52,7 +60,7 @@ export class CustomerService {
                 month: birthdayDate.getMonth() + 1,
                 day: birthdayDate.getDate(),
             }
-        }
+        };
     }
 
     setLastContactDate(lastContact) {
@@ -74,10 +82,10 @@ export class CustomerService {
             { label: 'Birthday', value: 'birthday'},
             { label: 'Gender', value: 'gender'},
             { label: 'Last Contact', value: 'lastContact'}
-        ]   
+        ];
     }
 
     getPageSizes() {
-        return [5, 10, 20, 30, 50]
+        return [5, 10, 20, 30, 50];
     }
 }

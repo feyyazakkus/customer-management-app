@@ -21,7 +21,9 @@ body {
     font-size: $default-font-size;
     cursor: pointer;
 }
-
+.text-bold {
+    font-weight: bold;
+}
 .page-header {
     color: #fff;
     background: $main-header-bg;		

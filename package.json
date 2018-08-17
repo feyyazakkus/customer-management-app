@@ -7,7 +7,7 @@
     "start": "node server.js",
     "build": "ng build",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "test": "ng test",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
@@ -32,7 +32,8 @@
     "mydatepicker": "2.6.3",
     "ngx-pagination": "3.2.0",
     "path": "0.12.7",
-    "rxjs": "^5.4.2",
+    "rxjs": "6.1.0",
+    "rxjs-compat": "6.2.2",
     "typescript": "~2.3.3",
     "zone.js": "^0.8.14"
   },
@@ -53,6 +54,7 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "popper.js": "1.14.4",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",

@@ -8,6 +8,7 @@ export interface ICustomer {
     gender: string;
     lastContact: string | Date;
     customerLifetimeValue: number;
+    created_at: string | Date;
 }
 
 export class Customer {
@@ -20,6 +21,7 @@ export class Customer {
     gender: string;
     lastContact: string | Date;
     customerLifetimeValue: number;
+    created_at: string | Date;
 
     constructor (customer) {
         this.customerID = customer.customerID || null;
@@ -33,5 +35,6 @@ export class Customer {
         this.gender = customer.gender || 'm';
         this.lastContact = customer.lastContact || '';
         this.customerLifetimeValue = customer.customerLifetimeValue || '';
+        this.created_at = new Date(customer.created_at);
     }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { MyDatePickerModule } from 'mydatepicker';
 import { FilterPipe } from './pipes/filter.pipe';
 import { LoaderComponent } from './loader/loader.component';
@@ -21,7 +22,8 @@ import { LoaderComponent } from './loader/loader.component';
         CommonModule,
         MyDatePickerModule,
         FilterPipe,
-        LoaderComponent
+        LoaderComponent,
+        NgxPaginationModule
     ],
     providers: [
         DatePipe
